@@ -1,0 +1,22 @@
+public class Solution {
+    public int firstUniqChar(String s) {
+        Map<Character,Integer> chars = new LinkedHashMap<Character,Integer>();
+        for(int i = 0;i< s.length();i++){
+            char  temp = s.charAt(i);
+            if(chars.containsKey(temp)==false){
+                chars.put(temp,1);
+            }
+            else{
+                chars.put(temp,chars.get(temp)+1);
+            }
+        }
+        int result = -1;
+        for(int i = 0;i< s.length() && result == -1;i++){
+            char  temp = s.charAt(i);
+            if(chars.get(temp) == 1){
+                result = i;
+            }
+        }
+        return result;
+    }
+}
