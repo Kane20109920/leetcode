@@ -1,0 +1,56 @@
+public class Solution {
+    public boolean checkRecord(String s) {
+        int countA = 0;
+        int countL = 0;
+        int indexA = 0;
+        int indexL = 0;
+        int lastIndexL = 0;
+        boolean result = true;
+        if(s.indexOf("A") >= 0 ){
+            countA++;
+            indexA = s.indexOf("A")+1;
+        }
+        else{
+            indexA = s.indexOf("A");
+        }
+        if(s.indexOf("L") >= 0){
+            countL++;
+            indexL = s.indexOf("L")+1;
+            lastIndexL = s.indexOf("L");
+        }
+        else{
+            indexL = s.indexOf("L");
+        }
+        while(result == true && indexA>= 0){
+            if(s.indexOf("A",indexA) >= 0){
+                countA++;
+                indexA = s.indexOf("A",indexA)+1;
+            }
+            else{
+                indexA = s.indexOf("A",indexA);
+            }
+            if(countA > 1){
+                result = false;
+            }
+        }
+        while(result == true && indexL >= 0){
+            if(indexL >= 0 && s.indexOf("L",indexL) >= 0 ){
+                if(s.indexOf("L",indexL) - lastIndexL <= 1){
+                    countL++;
+                }
+                else{
+                    countL = 1;
+                }
+                lastIndexL = s.indexOf("L",indexL);
+                indexL = s.indexOf("L",indexL)+1;
+            }
+            else{
+                indexL = s.indexOf("L",indexL);
+            }
+            if(countL > 2){
+                result = false;
+            }
+        }
+        return result;
+    }
+}
