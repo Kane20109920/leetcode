@@ -1,0 +1,20 @@
+public class Solution {
+    public boolean isPowerOfThree(int n) {
+        boolean result = true;
+        if(n<= 0){
+            result = false;
+        }
+        else{
+            int max3power = 1162261467;
+            if(n>max3power){
+                result = false;
+            }
+            else{
+                if(max3power%n != 0){
+                    result = false;
+                }
+            }
+        }
+        return result;
+    }
+}
