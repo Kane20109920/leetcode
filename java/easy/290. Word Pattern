@@ -1,0 +1,57 @@
+public class Solution {
+    public boolean wordPattern(String pattern, String str) {
+        boolean result = true;
+        Map<String,String> keyMap = new HashMap<String,String>();
+        int count = 0;
+        int index1 = -1;
+        int index2 = str.indexOf(" ");
+        if(pattern.length() == 0){
+            result = false;
+        }
+        while(index2 != -1&&result == true){
+            if(count >=pattern.length()){
+                result = false;
+            }
+            else{
+                if(keyMap.containsKey(Character.toString(pattern.charAt(count))) == false ){
+                    if(keyMap.containsValue(str.substring(index1+1,index2))== false){
+                        keyMap.put(Character.toString(pattern.charAt(count)),str.substring(index1+1,index2));    
+                    }
+                    else{
+                        result = false;
+                    }
+                }
+                else{
+                    result = keyMap.get(Character.toString(pattern.charAt(count))).equals(str.substring(index1+1,index2));    
+                }
+                index1 = index2;
+                index2 = str.indexOf(" ",index2+1);
+                count++;    
+            }
+        }
+        if(result == true){
+            if(count >=pattern.length()){
+                result = false;
+            }
+            else if(count == 0){
+                if(pattern.length()>1){
+                    result = false;
+                }
+            }
+            else{
+                if(keyMap.containsKey(Character.toString(pattern.charAt(count))) == false ){
+                    if(keyMap.containsValue(str.substring(str.lastIndexOf(" ")+1,str.length()))== false){
+                        keyMap.put(Character.toString(pattern.charAt(count)),str.substring(str.lastIndexOf(" ")+1,str.length()));    
+                    }
+                    else{
+                        result = false;
+                    }
+                }
+                else{
+                    result = keyMap.get(Character.toString(pattern.charAt(count))).equals(str.substring(str.lastIndexOf(" ")+1,str.length()));    
+                }
+            }    
+        }
+        return result;
+    }
+}
