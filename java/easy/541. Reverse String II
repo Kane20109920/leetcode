@@ -1,0 +1,34 @@
+public class Solution {
+    public String reverseStr(String s, int k) {
+        char[] result = s.toCharArray();
+            for(int i = 0 ;i<result.length;i+=k*2){
+                if(k>result.length){
+                    reverse(result,0,result.length-1);
+                }
+                else{
+                    int start = i;
+                    int end = i+k-1;
+                    if (end<result.length){
+                        reverse(result,start,end);    
+                    }
+                    else{
+                        reverse(result,start,result.length-1);
+                    }    
+                }            
+            }    
+         
+        return String.valueOf(result);
+    }
+    public void reverse(char[] result,int start,int end){
+        int start2 = start;
+        int end2 = end;
+        while(start2<end2){
+            char temp2 = result[start2];
+            result[start2] = result[end2];
+            result[end2] = temp2;
+            start2++;
+            end2--;
+        }    
+    }
+}
+   
