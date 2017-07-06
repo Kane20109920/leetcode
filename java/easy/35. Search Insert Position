@@ -1,0 +1,43 @@
+public class Solution {
+    public int searchInsert(int[] nums, int target) {
+        int index = 0;
+        int left = 0;
+        int right = nums.length-1;
+        boolean gotTarget = false;
+        int mid = (left+right)/2;
+        while(gotTarget == false){
+            if(left >= right){
+                gotTarget = true;
+                index = left;
+            }
+            if(nums[mid] == target){
+                index = mid;
+                gotTarget = true;
+            }
+            if(target>nums[mid]){
+                left = mid+1;
+                index = left;
+                mid = (left+right)/2;
+            }
+            else{
+                right = mid-1;
+                mid = (left+right)/2;
+            }
+            
+        }
+        return index;
+    }
+}
+
+/* 8line solution
+    public int searchInsert(int[] A, int target) {
+        int low = 0, high = A.length-1;
+        while(low<=high){
+            int mid = (low+high)/2;
+            if(A[mid] == target) return mid;
+            else if(A[mid] > target) high = mid-1;
+            else low = mid+1;
+        }
+        return low;
+    }
+*/
