@@ -1,0 +1,17 @@
+public class Solution {
+    public int arrangeCoins(int n) {
+        int startlevel = 0;
+        int endlevel = n;
+        while(startlevel<=endlevel){
+            int midlevel = (startlevel+endlevel)/2;
+            if(n>=(0.5*midlevel*midlevel+0.5*midlevel)){
+                startlevel = midlevel+1;
+            }
+            else{
+                endlevel = midlevel-1;
+            }
+            
+        }
+        return startlevel-1;
+    }
+}
