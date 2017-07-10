@@ -1,0 +1,23 @@
+public class Solution extends GuessGame {
+    public int guessNumber(int n) {
+        boolean gotResult = false;
+        int high = n;
+        int low = 1;
+        while(high>low){
+            int guessnum = (int)(high*0.5+low*0.5);
+            switch(guess(guessnum)){
+                case 1:
+                    low = guessnum+1;
+                    break;
+                case -1:
+                    high = guessnum-1;
+                    break;
+                case 0:
+                    high = -1;
+                    low = guessnum;
+                    break;
+            }
+        }
+        return low;
+    }
+}
