@@ -1,0 +1,19 @@
+public class Codec {
+    int shortUrlIndex = 0;
+    Map<Integer,String> trans = new HashMap<Integer,String>();
+    // Encodes a URL to a shortened URL.
+    public String encode(String longUrl) {
+        shortUrlIndex++;
+        trans.put(shortUrlIndex,longUrl);
+        return Integer.toString(shortUrlIndex);
+    }
+
+    // Decodes a shortened URL to its original URL.
+    public String decode(String shortUrl) {
+        return trans.get(shortUrlIndex);
+    }
+}
+
+// Your Codec object will be instantiated and called as such:
+// Codec codec = new Codec();
+// codec.decode(codec.encode(url));
