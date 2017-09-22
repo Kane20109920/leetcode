@@ -1,0 +1,24 @@
+class Solution {
+    public int fourSumCount(int[] A, int[] B, int[] C, int[] D) {
+        int result = 0;
+        Map<Integer,Integer> sumOfAB = new HashMap<Integer,Integer>();
+        for(int i = 0;i<A.length;i++){
+            for(int j = 0;j<B.length;j++){
+                if(!sumOfAB.containsKey(A[i]+B[j])){
+                    sumOfAB.put(A[i]+B[j],1);
+                }
+                else{
+                    sumOfAB.put(A[i]+B[j],sumOfAB.get(A[i]+B[j])+1);
+                }
+            }
+        }
+        for(int i = 0;i<C.length;i++){
+            for(int j = 0;j<D.length;j++){
+                if(sumOfAB.containsKey((C[i]+D[j])*-1)){
+                    result += sumOfAB.get((C[i]+D[j])*-1);
+                }
+            }
+        }
+        return result;
+    }
+}
