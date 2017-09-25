@@ -1,0 +1,25 @@
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        int left = 0;
+        int m = matrix.length;
+        boolean result = false;
+        if(m != 0){
+            int n = matrix[0].length;
+            int right = (m*n)-1;
+            while(left<=right){
+                int mid = (int)(0.5*left+0.5*right);
+                if(matrix[mid/n][(mid)%n] == target){
+                    result = true;
+                    left = right+1;
+                }
+                else if(matrix[mid/n][(mid)%n] > target){
+                    right = mid-1;
+                }
+                else{
+                    left = mid+1;
+                }
+            }    
+        }     
+        return result;
+    }
+}
