@@ -1,0 +1,23 @@
+class Solution {
+    public int uniqueMorseRepresentations(String[] words) {
+        Map<String,Integer> result = new HashMap<String,Integer>();
+        Map<Character,String> dir = new HashMap<Character,String>();
+        dir.put('a',".-");dir.put('b',"-...");dir.put('c',"-.-.");dir.put('d',"-..");dir.put('e',".");
+        dir.put('f',"..-.");dir.put('g',"--.");dir.put('h',"....");dir.put('i',"..");dir.put('j',".---");
+        dir.put('k',"-.-");dir.put('l',".-..");dir.put('m',"--");dir.put('n',"-.");dir.put('o',"---");
+        dir.put('p',".--.");dir.put('q',"--.-");dir.put('r',".-.");dir.put('s',"...");dir.put('t',"-");
+        dir.put('u',"..-");dir.put('v',"...-");dir.put('w',".--");dir.put('x',"-..-");dir.put('y',"-.--");dir.put('z',"--..");
+        for(int i = 0;i<words.length;i++){
+            StringBuilder sb = new StringBuilder();
+            char[] temp = words[i].toCharArray();
+            for(int j =0;j<temp.length;j++){
+                sb.append(dir.get(temp[j]));
+            }
+            result.put(sb.toString(),1);
+
+
+        }
+        return result.size();
+
+    }
+}
