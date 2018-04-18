@@ -1,0 +1,24 @@
+class Solution {
+    public List<Integer> selfDividingNumbers(int left, int right) {
+        List<Integer> result = new ArrayList<Integer>();
+        for(int i = left ; i <= right ; i++){
+            boolean isSelf = true;
+            char[] temp= Integer.toString(i).toCharArray();
+            if(i>=10){
+                for(int j = 0 ; (isSelf) && (j < temp.length) ; j++){
+                    if(Integer.parseInt(String.valueOf(temp[j]))==0){
+                        isSelf = false;
+                    }
+                    else if((i%(Character.getNumericValue(temp[j]))) != 0){
+                        isSelf = false;
+                    }
+                }    
+            }
+            
+            if(isSelf){
+                result.add(i);
+            }
+        }
+        return result;
+    }
+}
