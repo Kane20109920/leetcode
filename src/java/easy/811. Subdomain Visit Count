@@ -1,0 +1,35 @@
+class Solution {
+    public List<String> subdomainVisits(String[] cpdomains) {
+        List<String> result = new ArrayList<String>();
+        Map<String,Integer> domainNames = new HashMap<String,Integer>();
+        for(int i = 0;i< cpdomains.length;i++){
+            String[] temp = cpdomains[i].split(" ");
+            int feq = Integer.parseInt(temp[0]);
+            String[] temp2 = temp[1].split("\\.");
+            StringBuilder sb = new StringBuilder();
+            sb.append(temp2[temp2.length-1]);
+            if(!domainNames.containsKey(sb.toString())){
+                domainNames.put(sb.toString(),feq);
+            }
+            else{
+                domainNames.put(sb.toString(),feq+domainNames.get(sb.toString()));
+            }
+            for(int j = temp2.length-2;j>=0;j--){
+                sb.insert(0,temp2[j]+".");
+                if(!domainNames.containsKey(sb.toString())){
+                    domainNames.put(sb.toString(),feq);
+                }
+                else{
+                    domainNames.put(sb.toString(),feq+domainNames.get(sb.toString()));
+                }
+                    
+            }
+            
+        }
+        for(String keys:domainNames.keySet()){
+            result.add(domainNames.get(keys)+" "+keys);
+        }
+        return result;
+        
+    }
+}
