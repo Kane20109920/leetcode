@@ -1,0 +1,23 @@
+class Solution {
+    public int countSegments(String s) {
+        int count = 0;
+        if(s.length()>0){
+            int index = s.indexOf(" ");
+            int last = s.lastIndexOf(" ");
+            if(index > 0){
+                count++;
+            }
+            while(index != last){
+                if((s.indexOf(" ",index+1)-index) != 1 ){
+                    count++;
+                }
+                index = s.indexOf(" ",index+1);
+            }
+            if(last < s.length()-1){
+                count++;
+            }    
+        }
+        
+        return count;
+    }
+}
