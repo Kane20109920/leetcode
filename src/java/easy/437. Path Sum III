@@ -1,0 +1,36 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public int pathSum(TreeNode root, int sum) {
+        int result = 0;
+        if(root != null){
+            result += subTreeSum(root.left,root.val,sum);
+            result += subTreeSum(root.right,root.val,sum);
+            result += pathSum(root.left,sum);
+            result += pathSum(root.right,sum);
+            if((root.val == sum)){
+                result++;
+            }
+
+        }
+        return result;
+    }
+    public int subTreeSum(TreeNode root,int sum,int target){
+        int result = 0;
+        if(root != null){
+            result += subTreeSum(root.left,root.val+sum,target);
+            result += subTreeSum(root.right,root.val+sum,target);
+            if((root.val+sum)==target){
+                ++result;
+            }
+        }
+        return result;
+    }
+}
