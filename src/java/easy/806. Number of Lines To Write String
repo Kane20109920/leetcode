@@ -1,0 +1,25 @@
+class Solution {
+    public int[] numberOfLines(int[] widths, String S) {
+        Map<Character,Integer> temps = new HashMap<Character,Integer>();
+        for(int i = 0;i<26;i++){
+            char starts = 'a';
+            starts += i;
+            temps.put((starts),widths[i]);
+        }
+        int lineUnit = 100;
+        int lineCount = 1;
+        char[] chars = S.toCharArray();
+        for(int i = 0;i<chars.length;i++){
+            if((lineUnit - temps.get(chars[i])) >= 0){
+                lineUnit -= temps.get(chars[i]);
+            }
+            else{
+                lineUnit = 100;
+                lineCount++;
+                lineUnit -= temps.get(chars[i]);
+            }
+        }
+        int[] result = new int[]{lineCount,100-lineUnit};
+        return result;
+    }
+}
