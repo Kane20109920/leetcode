@@ -1,0 +1,15 @@
+class Solution {
+    public String toLowerCase(String str) {
+        StringBuilder result = new StringBuilder();
+        char[] temp = str.toCharArray();
+        for(int i = 0 ;i<temp.length;i++){
+            if((temp[i]>=65)&&(90>=temp[i])){
+                result.append((char)(temp[i]+32));
+            }
+            else{
+                result.append(String.valueOf(temp[i]));
+            }
+        }
+        return result.toString();
+    }
+}
