@@ -1,0 +1,27 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public boolean leafSimilar(TreeNode root1, TreeNode root2) {
+        return getSequences(root1).equals(getSequences(root2));
+    }
+    public String getSequences(TreeNode head){
+        StringBuilder temp = new StringBuilder();
+        if(head != null){
+            if(head.left == null && head.right == null){
+                temp.append(String.valueOf(head.val));
+            }
+            else{
+                temp.append(getSequences(head.left));
+                temp.append(getSequences(head.right));
+            }
+        }
+        return temp.toString();
+    }
+}
