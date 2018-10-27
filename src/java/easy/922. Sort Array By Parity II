@@ -1,0 +1,24 @@
+class Solution {
+    public int[] sortArrayByParityII(int[] A) {
+        int firstOdd = 1;
+        for(int i = 0;i<A.length;i+=2){
+            if(A[i] % 2 != 0){
+                swap(findOdd(firstOdd,A),i,A);
+            }
+        }
+        return A;
+        
+    }
+    public int findOdd(int startOdd,int[] A){
+        int result = startOdd;
+        while(result<A.length && A[result] % 2 == 1){
+            result += 2;
+        }
+        return result;
+    }
+    public void swap(int oddIndex,int evenIndex,int[] A){
+        int temp = A[oddIndex];
+        A[oddIndex] = A[evenIndex] ;
+        A[evenIndex] = temp;
+    }
+}
