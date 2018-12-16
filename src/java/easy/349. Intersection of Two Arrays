@@ -1,0 +1,22 @@
+class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+        Map<Integer,Boolean> tempMap = new HashMap<>();
+        List<Integer> result = new ArrayList<Integer>();
+        for(int i = 0;i<nums1.length;i++){
+            tempMap.put(nums1[i],true);
+        }
+        for(int i = 0;i<nums2.length;i++){
+            if(tempMap.containsKey(nums2[i])){
+                if(tempMap.get(nums2[i])){
+                    result.add(nums2[i]);
+                    tempMap.put(nums2[i],false);
+                }
+            }
+        }
+        int[] res = new int[result.size()];
+        for(int i = 0;i<res.length;i++){
+            res[i] = result.get(i);
+        }
+        return res;
+    }
+}
