@@ -1,0 +1,19 @@
+class Solution {
+    public int repeatedNTimes(int[] A) {
+        int resultValue = A.length/2;
+        Map<Integer,Integer> elementcount = new HashMap<Integer,Integer>();
+        for(int index : A){
+            if(!elementcount.containsKey(index)){
+                elementcount.put(index,1);
+            }
+            else {
+                elementcount.put(index,elementcount.get(index)+1);
+                if(elementcount.get(index) != 1){
+                    return index;
+                }   
+            }
+        }
+        return -1;
+        
+    }
+}
