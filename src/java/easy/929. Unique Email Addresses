@@ -1,0 +1,22 @@
+class Solution {
+    public int numUniqueEmails(String[] emails) {
+        int result = 0;
+        Map<String,Integer> loclaNameMap = new HashMap<String,Integer>();
+        Map<String,Integer> domainNameMap = new HashMap<String,Integer>();
+        for(int i = 0 ; i < emails.length;i++){
+            String[] splitLocalNameAndDomainName = emails[i].split("@");
+            if(!domainNameMap.containsKey(splitLocalNameAndDomainName[1])){
+                domainNameMap.put(splitLocalNameAndDomainName[1],1);
+            }
+            String tempLocalName = splitLocalNameAndDomainName[0].replaceAll(".","");
+            if(tempLocalName.contains("+")){
+                tempLocalName = tempLocalName.split("+")[0];    
+            }
+            if(!loclaNameMap.containsKey(tempLocalName)){
+                loclaNameMap.put(tempLocalName,1);
+            }
+        }
+        result = loclaNameMap.size()*domainNameMap.size();
+        return result;
+    }
+}
