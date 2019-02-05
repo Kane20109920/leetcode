@@ -1,0 +1,21 @@
+class RecentCounter {
+    ArrayList<Integer> pingQuery;
+    public RecentCounter() {
+        pingQuery = new ArrayList<Integer>();
+        pingQuery.add(0);
+    }
+    
+    public int ping(int t) {
+        pingQuery.add(t);
+        while(t-pingQuery.get(1) > 3000){
+            pingQuery.remove(1);
+        }
+        return pingQuery.size()-1;
+    }
+}
+
+/**
+ * Your RecentCounter object will be instantiated and called as such:
+ * RecentCounter obj = new RecentCounter();
+ * int param_1 = obj.ping(t);
+ */
