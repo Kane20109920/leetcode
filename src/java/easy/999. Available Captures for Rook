@@ -1,0 +1,71 @@
+class Solution {
+    public int numRookCaptures(char[][] board) {
+        int result = 0;
+        for(int i = 0;i<8;i++){
+            for(int j = 0;j<8;j++){
+                if(String.valueOf(board[i][j]).equals("R")){
+                    result = getNorth(i,j,board)+getSouth(i,j,board)+getWest(i,j,board)+getEast(i,j,board);
+                }
+            }
+            
+        }
+        return result;
+    }
+    public int getWest(int row,int col,char[][] board){
+        int result = 0;
+        boolean getBlockOrOnce = false;
+        for(int j = col;j>=0&&getBlockOrOnce==false;j--){
+            if(String.valueOf(board[row][j]).equals("B")){
+                getBlockOrOnce = true;
+            }
+            else if(String.valueOf(board[row][j]).equals("p")){
+                result=1;
+                getBlockOrOnce = true;
+            }
+        }
+        return result;
+    }
+    public int getEast(int row,int col,char[][] board){
+        int result = 0;
+        boolean getBlockOrOnce = false;
+        for(int j = col;j<8&&getBlockOrOnce==false;j++){
+            System.out.println("East\t"+row+"\t"+j);
+            if(String.valueOf(board[row][j]).equals("B")){
+                getBlockOrOnce = true;
+            }
+            else if(String.valueOf(board[row][j]).equals("p")){
+                result=1;
+                getBlockOrOnce = true;
+            }
+        }
+        return result;
+    }
+    public int getSouth(int row,int col,char[][] board){
+        int result = 0;
+        boolean getBlockOrOnce = false;
+        for(int j = row;j<8&&getBlockOrOnce==false;j++){
+            if(String.valueOf(board[j][col]).equals("B")){
+                getBlockOrOnce = true;
+            }
+            else if(String.valueOf(board[j][col]).equals("p")){
+                result=1;
+                getBlockOrOnce = true;
+            }
+        }
+        return result;
+    }
+    public int getNorth(int row,int col,char[][] board){
+        int result = 0;
+        boolean getBlockOrOnce = false;
+        for(int j = row;j>=0&&getBlockOrOnce==false;j--){
+            if(String.valueOf(board[j][col]).equals("B")){
+                getBlockOrOnce = true;
+            }
+            else if(String.valueOf(board[j][col]).equals("p")){
+                result=1;
+                getBlockOrOnce = true;
+            }
+        }
+        return result;
+    }
+}
