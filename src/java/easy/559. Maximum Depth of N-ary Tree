@@ -1,0 +1,40 @@
+/*
+// Definition for a Node.
+class Node {
+    public int val;
+    public List<Node> children;
+
+    public Node() {}
+
+    public Node(int _val,List<Node> _children) {
+        val = _val;
+        children = _children;
+    }
+};
+*/
+class Solution {
+    public int maxDepth(Node root) {
+        if(root == null){
+            return 0;
+        }
+        return getDepth(root,1);
+    }
+    public int getDepth(Node root,int level){
+        int tempResule = level;
+        if(root == null){
+            return level;
+        }
+        else{
+            int tempLevel = level;
+            for(Node child:root.children){
+                int tempLevel2 = getDepth(child,level+1);
+                if(tempLevel < tempLevel2){
+                    tempLevel = tempLevel2;
+                }
+            }
+            tempResule = tempLevel;
+        }
+        return tempResule;
+    }
+        
+}
