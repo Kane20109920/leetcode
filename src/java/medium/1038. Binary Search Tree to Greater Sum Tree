@@ -1,0 +1,50 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public TreeNode bstToGst(TreeNode root) {
+        int[] values = new int[100];
+        inorder(root,values);
+        setHead(root,values);
+        return root;
+    }
+    public void setHead(TreeNode root,int[] values){
+        if(root != null){
+            root.val = setGreater(root.val,values);
+        }
+        if(root.left != null){
+            setHead(root.left,values);
+        }
+        if(root.right != null){
+            setHead(root.right,values);
+        }
+    }
+    public int setGreater(int start,int[] values){
+        int result = 0;
+        for(int i = start;i<100;i++){
+            if(values[i]==1){
+                result += i;
+            }
+        }
+        return result;
+    }
+    public void inorder(TreeNode head,int[] values){
+        if(head != null){
+            values[head.val] = 1;
+        }
+        if(head.left != null){
+        inorder(head.left,values);    
+        }
+        if(head.right != null){
+        inorder(head.right,values);    
+        }
+        
+        
+    }
+}
