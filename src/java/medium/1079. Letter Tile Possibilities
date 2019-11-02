@@ -7,15 +7,15 @@ class Solution {
         return result;
     }
     public void GetKeys(Map<String,String> resultMap,String selectString,String nonSelectString){
-        
-        
         if(nonSelectString.length() > 0){
-            for(int i = 0;getNewString && i< nonSelectString.length();i++){
-                
+            for(int i = 0;i< nonSelectString.length();i++){
                 String newSelec = selectString+String.valueOf(nonSelectString.charAt(i));
                 String newNonSelectString = nonSelectString.substring(0,i)+nonSelectString.substring(i+1);
-                resultMap.put(newSelec,newNonSelectString);
+                if(!(resultMap.containsKey(newSelec)&&resultMap.get(newSelec).equals(newNonSelectString))){
+                    resultMap.put(newSelec,newNonSelectString);
                 GetKeys(resultMap,newSelec,newNonSelectString);
+                }
+                
             }
         }
         
