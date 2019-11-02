@@ -1,0 +1,23 @@
+class Solution {
+    public int numTilePossibilities(String tiles) {
+        int result = 0;
+        Map<String,String> resultKeys = new HashMap<>();
+        GetKeys(resultKeys,"",tiles);
+        result = resultKeys.keySet().size();
+        return result;
+    }
+    public void GetKeys(Map<String,String> resultMap,String selectString,String nonSelectString){
+        
+        
+        if(nonSelectString.length() > 0){
+            for(int i = 0;getNewString && i< nonSelectString.length();i++){
+                
+                String newSelec = selectString+String.valueOf(nonSelectString.charAt(i));
+                String newNonSelectString = nonSelectString.substring(0,i)+nonSelectString.substring(i+1);
+                resultMap.put(newSelec,newNonSelectString);
+                GetKeys(resultMap,newSelec,newNonSelectString);
+            }
+        }
+        
+    }
+}
