@@ -1,0 +1,34 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    private int deeplevel;
+    public int deepestLeavesSum(TreeNode root) {
+        deeplevel = getLevel(0,root);      
+        return getSum(1,root);
+    }
+    public int getLevel(int level,TreeNode head){
+        if(head != null){
+            return Math.max(getLevel(level+1,head.left),getLevel(level+1,head.right));
+        }
+        return level;
+    }
+    public int getSum(int level,TreeNode head){
+        int tempresult = 0;
+        if(head != null){
+            tempresult += getSum(level+1,head.left);
+            tempresult += getSum(level+1,head.right);
+            if(level == deeplevel){
+                return head.val;
+            }
+        }
+        return tempresult;
+        
+    }
+}
