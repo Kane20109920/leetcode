@@ -1,0 +1,55 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public List<Integer> getAllElements(TreeNode root1, TreeNode root2) {
+        List<Integer> treeToListFirst = new ArrayList<>();
+        List<Integer> treeToListSecond = new ArrayList<>();
+        TreeToList(treeToListFirst,root1);
+        TreeToList(treeToListSecond,root2);
+        return MergeTwoList(treeToListFirst,treeToListSecond);
+    }
+    public void TreeToList(List<Integer> treeList,TreeNode head){
+        if(head != null){
+            TreeToList(treeList,head.left);
+            treeList.add(head.val);
+            TreeToList(treeList,head.right);
+        }
+    }
+    public List<Integer> MergeTwoList(List<Integer> list1,List<Integer> list2){
+        List<Integer> result = new ArrayList<>();
+        int listOneIndex = 0;
+        int listTwoIndex = 0;
+        while(listOneIndex < list1.size() && listTwoIndex < list2.size()){
+            boolean addOne = false;
+            boolean addTwo = false;
+            if(list1.get(listOneIndex) < list2.get(listTwoIndex)){
+                result.add(list1.get(listOneIndex));
+                addOne = true;
+            }
+            else{
+                result.add(list2.get(listTwoIndex));
+                addTwo = true;
+            }
+            if(addOne){
+                listOneIndex++;
+            }
+            else if(addTwo){
+                listTwoIndex++;
+            }
+        }
+        for(int i = listTwoIndex;i<list2.size();i++){
+            result.add(list2.get(i));
+        }
+        for(int i = listOneIndex;i<list1.size();i++){
+            result.add(list1.get(i));
+        }
+        return result;
+    }
+}
