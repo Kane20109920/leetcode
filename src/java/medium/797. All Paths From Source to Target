@@ -1,0 +1,23 @@
+class Solution {
+    List<List<Integer>> result = new ArrayList<>();
+    public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
+        List<Integer> tempPath = new ArrayList<>();
+        tempPath.add(0);
+        getPaths(tempPath,0,graph);
+        return result;
+    }
+    public void getPaths(List<Integer> tempPath,int index,int[][]graph){
+        if(index == graph.length-1){
+            result.add(new ArrayList<Integer>(tempPath));
+        }
+        else{
+            for(int i = 0;i<graph[index].length;i++){
+                int nextIndex = graph[index][i];
+                tempPath.add(nextIndex);
+                getPaths(tempPath,nextIndex,graph);
+                tempPath.remove(tempPath.size()-1);
+                
+            }
+        }
+    }
+}
