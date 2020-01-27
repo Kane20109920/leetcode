@@ -1,0 +1,16 @@
+class Solution {
+    public int[] deckRevealedIncreasing(int[] deck) {
+        Arrays.sort(deck);
+        Queue<Integer> cardAddress = new LinkedList<>();
+        for(int i = 0;i<deck.length;i++){
+            cardAddress.add(i);
+        }
+        int[] result = new int[deck.length];
+        for(int i = 0;i< deck.length;i++){
+            int tempIndex = cardAddress.poll();
+            result[tempIndex] = deck[i];
+            cardAddress.add(cardAddress.poll());
+        }
+        return result;
+    }
+}
