@@ -1,0 +1,34 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public List<TreeNode> allPossibleFBT(int N) {
+        List<TreeNode> result = new ArrayList<>();
+        if(N == 1){
+            result.add(new TreeNode(0));
+            return result;
+            
+        }
+        int numNodes = N-1;
+        for(int i = 1;i< numNodes;i+=2){
+            
+            List<TreeNode> leftSubTrees = allPossibleFBT(i);
+            List<TreeNode> rightSubTrees = allPossibleFBT(numNodes-i);
+            for(TreeNode leftTree:leftSubTrees){
+                for(TreeNode rightTree:rightSubTrees){
+                    TreeNode tmpTreeRoot = new TreeNode(0);
+                    tmpTreeRoot.left = leftTree;
+                    tmpTreeRoot.right = rightTree;
+                    result.add(tmpTreeRoot);
+                }
+            }
+        }
+        return result;
+    }
+}
