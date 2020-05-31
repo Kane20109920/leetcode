@@ -1,0 +1,23 @@
+class Solution {
+    public int[] processQueries(int[] queries, int m) {
+        int[] result = new int[queries.length];
+        Map<Integer,Integer> indexTemp = new HashMap<>();
+        for(int i = 0;i<m;i++){
+            indexTemp.put(i+1,i);
+        }
+        for(int i = 0 ;i< queries.length;i++){
+            result[i] = indexTemp.get(queries[i]);
+            setIndexMap(indexTemp,queries[i]);
+        }
+        return result;
+    }
+    public void setIndexMap(Map<Integer,Integer> indexTemp,int key){
+        int tempValue = indexTemp.get(key);
+        for(int keys:indexTemp.keySet()){
+            if(indexTemp.get(keys)< tempValue){
+                indexTemp.put(keys,indexTemp.get(keys)+1);    
+            }
+        }
+        indexTemp.put(key,0);
+    }
+}
