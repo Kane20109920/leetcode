@@ -1,0 +1,16 @@
+class Solution {
+    public int[] processQueries(int[] queries, int m) {
+        int[] result = new int[queries.length];
+        LinkedList<Integer> tempIndex = new LinkedList<>();
+        for(int i = 0;i<m;i++){
+            tempIndex.add(i+1);
+        }
+        for(int i = 0;i<queries.length;i++){
+            int pIndex =tempIndex.indexOf(queries[i]);
+            result[i] = pIndex;
+            tempIndex.remove(pIndex);
+            tempIndex.addFirst(queries[i]);
+        }
+        return result;
+    }
+}
