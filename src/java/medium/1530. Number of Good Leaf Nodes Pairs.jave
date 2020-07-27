@@ -1,0 +1,61 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public int countPairs(TreeNode root, int distance) {
+        int result = 0;
+        List<TreeNode> path = new ArrayList<>();
+        Map<TreeNode,List<TreeNode>> pathMap =new HashMap<>();
+        getLeafs(pathMap,path,root);
+        for(TreeNode start:pathMap.keySet()){
+            for(TreeNode target:pathMap.keySet()){
+                if(!start.equals(target)){
+                    int tempDistance = getSameRoot(pathMap.get(start),pathMap.get(target));
+                    
+                    if(  (tempDistance <= distance )){
+                        result++;
+                    }
+                }
+                    
+            }
+        }
+        return result/2;
+    }
+    public int getSameRoot(List<TreeNode> startList,List<TreeNode> targetList){
+        int index = 0;
+        while(index < startList.size() && index<targetList.size()){
+            if(startList.get(index) != targetList.get(index)){
+                break;
+            }
+            index++;
+        }
+        return (startList.size()-index)+(targetList.size()-index);
+    }
+    public void getLeafs(Map<TreeNode,List<TreeNode>> pathMap,List<TreeNode> path,TreeNode root){
+        if(root != null){
+            if(root.left == null && root.right==null){
+                path.add(root);
+                pathMap.put(root,new ArrayList<TreeNode>(path));
+                path.remove(path.size()-1);
+            }
+            else{
+                path.add(root);
+                getLeafs(pathMap,path,root.left);
+                getLeafs(pathMap,path,root.right);
+                path.remove(path.size()-1);
+            }
+        }
+    }
+}
