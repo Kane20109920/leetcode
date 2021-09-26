@@ -1,0 +1,3 @@
+# Write your My SQL query statement below
+select emp.Name as Employee  from Employee emp,Employee man
+where emp.ManagerId = man.Id and emp.Salary>man.Salary
