@@ -1,0 +1,4 @@
+# Write your MySQL query statement below
+select ep.Email from Person ep
+group by ep.Email
+having count(ep.Email) != count(distinct ep.Email)
